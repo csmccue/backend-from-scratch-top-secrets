@@ -3,6 +3,13 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
+const mockUser = {
+  firstName: 'Test',
+  lastName: 'User',
+  email: 'test@example.com',
+  password: '12345',
+};
+
 describe('backend-express-template routes', () => {
   beforeEach(() => {
     return setup(pool);

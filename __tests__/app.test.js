@@ -16,7 +16,7 @@ describe('backend-express-template routes', () => {
   });
 
   
-  it('creates a new user', async () => {
+  it('POST /user creates a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
     const { firstName, lastName, email } = mockUser;
 
@@ -28,7 +28,14 @@ describe('backend-express-template routes', () => {
     });
   });
 
-
+  it('POST /users/session signs in a user', async () => {
+    await request(app).post('/api/v1/users').send(mockUser);
+    const res = await (await request(app).post('/api/v1/users/sessions')).send({
+      email: 'test@example.com',
+      password: '12345'
+    })
+    expect(res.body.status).toEqual(200);
+  });
   afterAll(() => {
     pool.end();
   });

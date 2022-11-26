@@ -34,7 +34,7 @@ describe('backend-express-template routes', () => {
       email: 'test@example.com',
       password: '12345'
     });
-    expect(res.body.status).toEqual(200);
+    expect(res.status).toEqual(200);
   });
   afterAll(() => {
     pool.end();

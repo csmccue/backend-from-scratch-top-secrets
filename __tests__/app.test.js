@@ -30,10 +30,10 @@ describe('backend-express-template routes', () => {
 
   it('POST /users/session signs in a user', async () => {
     await request(app).post('/api/v1/users').send(mockUser);
-    const res = await (await request(app).post('/api/v1/users/sessions')).send({
+    const res = await request(app).post('/api/v1/users/sessions').send({
       email: 'test@example.com',
       password: '12345'
-    })
+    });
     expect(res.body.status).toEqual(200);
   });
   afterAll(() => {

@@ -46,12 +46,13 @@ describe('backend-express-template routes', () => {
       password: '12345',
     });
     const res = await agent.delete('/api/v1/users/sessions');
-    expect(res.status).toBe(200);
-    expect(res.body).toMatchInlineSnapshot(`
-      Object {
-        "message": "signed out",
-        "success": true,
-    }`);
+    // expect(res.status).toBe(200);
+    // expect(res.body).toMatchInlineSnapshot(`Object {
+    //     "message": "signed out",
+    //     "success": true,
+    // }`);
+    console.log(res.body);
+    expect(res.body).toEqual('{"message": "signed out", "success": true}');
   });
   afterAll(() => {
     pool.end();

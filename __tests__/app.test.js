@@ -16,7 +16,6 @@ describe('backend-express-template routes', () => {
     return setup(pool);
   });
 
-  
   it('POST /user creates a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
     const { firstName, lastName, email } = mockUser;
@@ -33,7 +32,7 @@ describe('backend-express-template routes', () => {
     await request(app).post('/api/v1/users').send(mockUser);
     const res = await request(app).post('/api/v1/users/sessions').send({
       email: 'test@example.com',
-      password: '12345'
+      password: '12345',
     });
     expect(res.status).toEqual(200);
   });
@@ -46,13 +45,13 @@ describe('backend-express-template routes', () => {
       password: '12345',
     });
     const res = await agent.delete('/api/v1/users/sessions');
-    // expect(res.status).toBe(200);
-    // expect(res.body).toMatchInlineSnapshot(`Object {
-    //     "message": "signed out",
-    //     "success": true,
-    // }`);
-    console.log(res.body);
-    expect(res.body).toEqual('{"message": "signed out", "success": true}');
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchInlineSnapshot(`
+      Object {
+        "message": "signed out",
+        "success": true,
+      }
+    `);
   });
   afterAll(() => {
     pool.end();

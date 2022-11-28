@@ -48,15 +48,11 @@ describe('backend-express-template routes', () => {
     const res = await agent.delete('/api/v1/users/sessions');
     expect(res.status).toBe(200);
     expect(res.body).toMatchInlineSnapshot(`
-    Object {
-      "message": "signed out"
-      "success": true,
+      Object {
+        "message": "signed out",
+        "success": true,
     }`);
   });
-
-
-
-
   afterAll(() => {
     pool.end();
   });
